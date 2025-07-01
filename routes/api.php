@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AIController;
 use Illuminate\Support\Facades\Route;
 
 // Route::get('/user', function (Request $request) {
@@ -41,3 +42,8 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::delete('/posts/{post}', [PostController::class, 'destroy']);
     });
 });
+
+
+
+Route::middleware(['auth:sanctum', 'admin'])->post('/ai/generate-preview', [AIController::class, 'generatePreview']);
+// Route::post('/ai/generate-preview', [AIController::class, 'generatePreview']);

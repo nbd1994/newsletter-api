@@ -47,7 +47,7 @@ class PostController extends Controller {
     }
 
     public function update(Request $request, Post $post) {
-        // $this->authorize('update', $post);
+        $this->authorize('update', $post);
         $validated = $request->validate([
             'title' => 'string|max:255',
             'body' => 'string',
@@ -57,7 +57,7 @@ class PostController extends Controller {
     }
 
     public function destroy(Post $post) {
-        // $this->authorize('delete', $post);
+        $this->authorize('delete', $post);
         $post->delete(); // Cascades to comments and likes
         return response()->json(null, 204);
     }
