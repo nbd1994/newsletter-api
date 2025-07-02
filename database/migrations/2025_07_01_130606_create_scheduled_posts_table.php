@@ -11,12 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('posts', function (Blueprint $table) {
+        Schema::create('scheduled_posts', function (Blueprint $table) {
             $table->id();
-            // $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->unsignedBigInteger('user_id')->default(1); // default admin
             $table->string('title');
             $table->text('body');
+            $table->unsignedBigInteger('created_by')->default(1); // default admin
             $table->timestamps();
         });
     }
@@ -26,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('posts');
+        Schema::dropIfExists('scheduled_posts');
     }
 };

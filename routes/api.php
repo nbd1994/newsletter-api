@@ -11,6 +11,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\LikeController;
+use App\Http\Controllers\ScheduledPostController;
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
@@ -46,4 +47,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
 
 Route::middleware(['auth:sanctum', 'admin'])->post('/ai/generate-preview', [AIController::class, 'generatePreview']);
-// Route::post('/ai/generate-preview', [AIController::class, 'generatePreview']);
+
+
+Route::get('/ai/schedule-post', [ScheduledPostController::class, 'schedulePost']);
+Route::get('/ai/auto-post', [ScheduledPostController::class, 'autoPost']);
